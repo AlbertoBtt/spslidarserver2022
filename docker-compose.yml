@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  mongo-database:
+    image: "mongo:4.2.10"
+    container_name: "mongo-database"
+    ports:
+      - "27017:27017"
+  spslserver:
+    image: "spslidarserver"
+    container_name: "spslidarserver"
+    ports:
+      - "8080:8080"
+    environment:
+      - "SPRING_PROFILES_ACTIVE=docker"
+    links:
+      - "mongo-database"
